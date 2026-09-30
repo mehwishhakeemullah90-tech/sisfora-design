@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XHQGVF2SBW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XHQGVF2SBW');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Shop All | Sisfora</title>
+  <meta name="description" content="Shop the full Sisfora collection of luxury cosmetics." />
+  <meta name="theme-color" content="#FBF7F2" />
+  <link rel="icon" href="/images/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <div id="sfHeader"></div>
+  <script src="/js/site-config.js"></script>
+  <script src="/js/layout.js"></script>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+        <p class="breadcrumb-sf mb-2"><a href="/">Home</a> / <span class="text-dark" id="shopPageTitle">Shop</span></p>
+        <h1 class="section-title mb-0" id="shopHeading">Shop All Products</h1>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="row g-4">
+
+          <!-- Filters sidebar -->
+          <div class="col-lg-3">
+            <form id="shopFilterForm" class="filter-sidebar">
+              <div class="mb-4">
+                <input type="text" id="shopSearchInput" class="form-control" placeholder="Search products..." />
+              </div>
+
+              <h6 class="mb-3">Category</h6>
+              <div class="mb-4" id="shopCategoryFilters">
+                <div class="sf-skeleton" style="height:120px;"></div>
+              </div>
+
+              <h6 class="mb-3">Brand</h6>
+              <div class="mb-4" id="shopBrandFilters">
+                <div class="sf-skeleton" style="height:80px;"></div>
+              </div>
+
+              <h6 class="mb-3">Price Range (Rs.)</h6>
+              <div class="row g-2 mb-4">
+                <div class="col-6"><input type="number" name="minPrice" min="0" class="form-control form-control-sm" placeholder="Min Rs." aria-label="Minimum price in rupees"></div>
+                <div class="col-6"><input type="number" name="maxPrice" min="0" class="form-control form-control-sm" placeholder="Max Rs." aria-label="Maximum price in rupees"></div>
+              </div>
+
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-sisfora btn-sm">Apply Filters</button>
+                <button type="reset" class="btn btn-link btn-sm sf-clear-filters" id="shopClearFilters">Clear all filters</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Product grid -->
+          <div class="col-lg-9">
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+              <span id="shopResultsCount" class="text-muted small">Loading...</span>
+              <select id="shopSort" class="form-select form-select-sm" style="width:200px;">
+                <option value="">Sort: Featured</option>
+                <option value="price_asc">Price: Low to High</option>
+                <option value="price_desc">Price: High to Low</option>
+                <option value="rating">Top Rated</option>
+                <option value="bestselling">Best Selling</option>
+              </select>
+            </div>
+            <div class="row g-4" id="shopProductGrid" data-preset-category=""></div>
+            <nav class="mt-5">
+              <ul class="pagination justify-content-center" id="shopPagination"></ul>
+            </nav>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="sfFooter"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/wishlist.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/product.js"></script>
+  <script src="/js/motion.js"></script>
+  <script>
+    // Active nav link
+    document.querySelectorAll('.navbar-sisfora .nav-link').forEach(function(link) {
+      var href = link.getAttribute('href');
+      if (href === '/shop' && (window.location.pathname === '/shop' || window.location.pathname.startsWith('/categories/'))) {
+        link.classList.add('active');
+      }
+    });
+    // Update heading if on a category page
+    if (window.location.pathname.startsWith('/categories/')) {
+      var slug = window.location.pathname.split('/categories/')[1];
+      sfFetch('/api/categories').then(function(data) {
+        var cat = (data.categories || []).find(function(c) { return c.slug === slug; });
+        if (cat) {
+          var h = document.getElementById('shopHeading');
+          var t = document.getElementById('shopPageTitle');
+          if (h) h.textContent = cat.name;
+          if (t) t.textContent = cat.name;
+          document.title = cat.name + ' | Sisfora';
+        }
+      }).catch(function() {});
+    }
+  </script>
+</body>
+</html>

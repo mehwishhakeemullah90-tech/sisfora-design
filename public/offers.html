@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XHQGVF2SBW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XHQGVF2SBW');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Offers &amp; Discounts | Sisfora</title>
+  <meta name="description" content="Save on your favorite Sisfora products with our latest offers." />
+  <meta name="theme-color" content="#FBF7F2" />
+  <link rel="icon" href="/images/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <div id="sfHeader"></div>
+  <script src="/js/site-config.js"></script>
+  <script src="/js/layout.js"></script>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="breadcrumb-sf"><a href="/">Home</a> / <a href="/shop">Shop</a> / <span class="text-dark">Offers</span></p>
+        <h1 class="section-title mb-0">Offers &amp; Discounts</h1>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="row g-4" id="offersGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="sfFooter"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/wishlist.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/product.js"></script>
+  <script src="/js/motion.js"></script>
+  <script>
+    document.querySelectorAll('.navbar-sisfora .nav-link').forEach(function(l) {
+      if (l.getAttribute('href') === '/offers') l.classList.add('active');
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      sfLoadTaggedProducts('#offersGrid', 'offer', { limit: 24 });
+    });
+  </script>
+</body>
+</html>

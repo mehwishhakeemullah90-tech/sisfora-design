@@ -1,0 +1,107 @@
+/* =========================================================================
+   Sisfora Admin Dashboard styles
+   ========================================================================= */
+:root {
+  --adm-bg: #faf7f5;
+  --adm-sidebar: #1a1512;
+  --adm-gold: #c9a24b;
+  --adm-pink: #d98fa0;
+  --adm-border: #ece0dc;
+  --adm-text: #2b2422;
+}
+
+body.admin-body {
+  background: var(--adm-bg);
+  font-family: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+  color: var(--adm-text);
+}
+
+.admin-wrapper { display: flex; min-height: 100vh; }
+
+.admin-sidebar {
+  width: 250px; background: var(--adm-sidebar); color: #d8cfc9; flex-shrink: 0;
+  position: fixed; top: 0; bottom: 0; left: 0; overflow-y: auto; z-index: 100;
+  transition: transform 0.3s ease;
+}
+.admin-sidebar .sf-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: #fff; padding: 1.5rem 1.25rem 1rem; display: block; }
+.admin-sidebar .sf-logo span { color: var(--adm-gold); }
+.admin-sidebar .nav-link {
+  color: #b9afa9; padding: 0.7rem 1.25rem; font-size: 0.88rem; display: flex; align-items: center; gap: 0.65rem;
+  border-left: 3px solid transparent; transition: all 0.2s ease;
+}
+.admin-sidebar .nav-link:hover { color: #fff; background: rgba(255,255,255,0.05); }
+.admin-sidebar .nav-link.active { color: #fff; background: rgba(201,162,75,0.12); border-left-color: var(--adm-gold); }
+.admin-sidebar .nav-section-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: #74695f; padding: 1rem 1.25rem 0.4rem; }
+
+.admin-main { margin-left: 250px; flex: 1; min-width: 0; }
+.admin-topbar {
+  background: #fff; border-bottom: 1px solid var(--adm-border); padding: 0.9rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50;
+}
+.admin-content { padding: 1.75rem; }
+
+.stat-card { background: #fff; border: 1px solid var(--adm-border); border-radius: 8px; padding: 1.5rem; height: 100%; }
+.stat-card .stat-icon { width: 46px; height: 46px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+.stat-card .stat-value { font-size: 1.7rem; font-weight: 600; font-family: 'Cormorant Garamond', serif; }
+.stat-card .stat-label { font-size: 0.8rem; color: #8a7f7a; }
+
+.admin-card { background: #fff; border: 1px solid var(--adm-border); border-radius: 8px; }
+.admin-card .card-header-sf { padding: 1rem 1.25rem; border-bottom: 1px solid var(--adm-border); font-weight: 600; display: flex; align-items: center; justify-content: space-between; }
+
+.table-sf { font-size: 0.88rem; }
+.table-sf thead th { text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.06em; color: #8a7f7a; border-bottom: 1px solid var(--adm-border); font-weight: 600; }
+.table-sf td { vertical-align: middle; }
+.table-sf tbody tr:hover { background: #fbf7f5; }
+
+.badge-status { font-size: 0.7rem; padding: 5px 10px; border-radius: 20px; text-transform: capitalize; font-weight: 500; }
+.badge-status.pending { background: #fdf1d6; color: #9a7a13; }
+.badge-status.processing { background: #dce8fb; color: #2f5fa3; }
+.badge-status.shipped { background: #e3ddfa; color: #5a3fa8; }
+.badge-status.delivered { background: #dcf3e3; color: #227a45; }
+.badge-status.cancelled { background: #fadbdb; color: #a13a3a; }
+
+.thumb-sf { width: 44px; height: 44px; object-fit: cover; border-radius: 4px; border: 1px solid var(--adm-border); }
+
+/* ---- Buttons ---- */
+.btn-adm-primary {
+  background: var(--adm-sidebar);
+  color: #fff;
+  border: 1px solid var(--adm-sidebar);
+  border-radius: 2px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 0.5rem 1.25rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.btn-adm-primary:hover { background: var(--adm-gold); border-color: var(--adm-gold); color: var(--adm-sidebar); }
+
+/* ---- Toast notification (admin pages don't load style.css) ---- */
+.toast-sf {
+  position: fixed; top: 80px; right: 20px; z-index: 3000;
+  background: var(--adm-sidebar); color: #fff;
+  padding: 0.85rem 1.35rem; border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(26, 21, 18, 0.18);
+  font-size: 0.88rem;
+  transform: translateX(130%);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 320px;
+}
+.toast-sf.show { transform: translateX(0); }
+.toast-sf.error { background: #a13a3a; }
+
+/* ---- Form controls inside modals ---- */
+.modal .form-control {
+  border-radius: 2px;
+  border: 1px solid var(--adm-border);
+  padding: 0.65rem 0.9rem;
+  font-size: 0.9rem;
+}
+.modal .form-control:focus { border-color: var(--adm-gold); box-shadow: 0 0 0 3px rgba(201, 162, 75, 0.15); outline: none; }
+.modal .form-label { font-size: 0.82rem; letter-spacing: 0.02em; color: var(--adm-text); }
+
+@media (max-width: 991.98px) {
+  .admin-sidebar { transform: translateX(-100%); }
+  .admin-sidebar.open { transform: translateX(0); }
+  .admin-main { margin-left: 0; }
+}

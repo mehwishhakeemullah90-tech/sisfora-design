@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "functions": {
+    "server.js": {
+      "includeFiles": "public/**,views/**,config/**,controllers/**,middleware/**,models/**,routes/**,utils/**"
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "server.js"
+    }
+  ]
+}
